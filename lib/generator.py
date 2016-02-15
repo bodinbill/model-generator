@@ -1,4 +1,5 @@
 from template.interface import InterfaceTemplate
+from template.implement import ImplementTemplate
 from reader import Reader
 
 class Generator:
@@ -9,7 +10,7 @@ class Generator:
         self.reader.execute()
         datas=self.reader.getData()
 
-        tps=[InterfaceTemplate(datas)]
+        tps=[InterfaceTemplate(datas), ImplementTemplate(datas)]
 
         for tp in tps:
             print tp.execute()

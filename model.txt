@@ -2,6 +2,7 @@ author=Bodin Srisompong
 package=contactaddress
 name=ContactAddress
 super=Entity
+abstract=AbstractEntity
 key=Long
 property:available=boolean
 property:name=String
