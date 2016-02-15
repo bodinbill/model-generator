@@ -1,0 +1,8 @@
+author=Bodin Srisompong
+package=contactaddress
+name=ContactAddress
+super=Entity
+key=Long
+property:available=boolean
+property:name=String
+property:recipientName=String
