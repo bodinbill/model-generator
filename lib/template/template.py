@@ -19,6 +19,11 @@ class TemplateUtils:
     def splitUpper(value, separator=" "):
         l=TemplateUtils.split(value)
         return string.join([f.lower().upper()[0]+f.lower()[1:] for f in l],separator)
+
+    @staticmethod
+    def splitFull(value):
+        l=TemplateUtils.split(value)
+        return string.join([f.upper() for f in l],"_")
             
 class Template(object):
     def __init__(self, datas):

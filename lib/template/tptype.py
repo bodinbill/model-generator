@@ -69,3 +69,30 @@ IS_METHOD_IMPL_TEMPLATE="""	/**
 	public %s get%s() {
 		return %s;
 	}"""
+
+TEST_TEMPLATE="""package com.wongnai.domain.model.%s.internal;
+
+public class %sImplTest {
+	@Before
+	public void setUp()() {
+            underTest = new %sImpl();
+	}
+	
+%s
+}
+"""
+
+TEST_METHOD_TEMPLATE="""	@Test
+	public void test%s() {
+		Assert.assertThat(underTest.get%s(),CoreMatcher.nullValue());
+		underTest.set%s(%s);
+		Assert.assertThat(underTest.get%s(),CoreMatcher.equalTo(%s));
+	}"""
+
+TEST_IS_METHOD_TEMPLATE="""	@Test
+	public void test%s() {
+		Assert.assertThat(underTest.is%s(),CoreMatcher.equalTo(false));
+		underTest.set%s(true);
+		Assert.assertThat(underTest.is%s(),CoreMatcher.equalTo(true));
+	}"""
+
