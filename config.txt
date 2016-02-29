@@ -1,4 +1,4 @@
-author=Bodin Srisompong
+author=Theerasak Meebunrot
 package=contactaddress
 name=ContactAddress
 super=Entity
