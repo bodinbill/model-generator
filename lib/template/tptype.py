@@ -96,3 +96,23 @@ TEST_IS_METHOD_TEMPLATE="""	@Test
 		Assert.assertThat(underTest.is%s(),CoreMatcher.equalTo(true));
 	}"""
 
+FORM_TEMPLATE="""package com.wongnai.web.admin.{packet};
+/**
+ * The base form of {{@link {interface}}}.
+ *
+ * @author {auther}
+ */
+public class CreateOrUpdate{1}Form extends AbstractCreateOrUpdateForm<{interface}, {key}> {{
+{variable}
+
+	/**
+	 * Fills inputs to the given {name}.
+	 *
+	 * @param {camel}
+	 *            {name}
+	 */
+	protected void fill({interface} {camel}) {{
+		{fill}
+	}}
+}}
+"""
