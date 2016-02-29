@@ -95,6 +95,7 @@ TEST_IS_METHOD_TEMPLATE="""	@Test
 		underTest.set%s(true);
 		Assert.assertThat(underTest.is%s(),CoreMatcher.equalTo(true));
 	}"""
+
 TEST_REPOSITORY_HIBERNATE_TEMPLATE = """package com.wongnai.infrastructure.hibernate;
 
 public class {0}RepositoryHibernateTest
@@ -123,7 +124,8 @@ public class {0}RepositoryHibernateTest
 	protected Set<String> getExpectedAssociations() {{
 		return null;
 	}}
-}}"""
+}}
+"""
 
 FORM_TEMPLATE="""package com.wongnai.web.admin.{packet};
 /**
