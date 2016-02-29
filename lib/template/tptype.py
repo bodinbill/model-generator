@@ -95,3 +95,33 @@ TEST_IS_METHOD_TEMPLATE="""	@Test
 		underTest.set%s(true);
 		Assert.assertThat(underTest.is%s(),CoreMatcher.equalTo(true));
 	}"""
+
+TEST_REPOSITORY_HIBERNATE_TEMPLATE = """package com.wongnai.infrastructure.hibernate;
+
+public class {0}RepositoryHibernateTest
+		extends AbstractHibernateRepositoryTestCase<{0}RepositoryHibernate, {0}, Long> {{
+
+	@Override
+	protected {0} createTestEntity(Long key) {{
+		{0}Impl testEntity = {0}Impl.create();
+
+		AbstractEntity.setId(testEntity, key);
+
+		return testEntity;
+	}}
+
+	@Override
+	protected Long createTestKey() {{
+		return 5L;
+	}}
+
+	@Override
+	protected {0}RepositoryHibernate createUnderTest() {{
+		return new {0}RepositoryHibernate();
+	}}
+
+	@Override
+	protected Set<String> getExpectedAssociations() {{
+		return null;
+	}}
+}}"""
