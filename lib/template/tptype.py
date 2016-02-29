@@ -74,10 +74,10 @@ TEST_TEMPLATE="""package com.wongnai.domain.model.%s.internal;
 
 public class %sImplTest {
 	@Before
-	public void setUp()() {
+	public void setUp() {
             underTest = new %sImpl();
 	}
-	
+
 %s
 }
 """
@@ -95,4 +95,3 @@ TEST_IS_METHOD_TEMPLATE="""	@Test
 		underTest.set%s(true);
 		Assert.assertThat(underTest.is%s(),CoreMatcher.equalTo(true));
 	}"""
-
