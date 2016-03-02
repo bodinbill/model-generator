@@ -66,7 +66,7 @@ IS_METHOD_IMPL_TEMPLATE="""	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public %s get%s() {
+	public %s is%s() {
 		return %s;
 	}"""
 
@@ -133,7 +133,7 @@ FORM_TEMPLATE="""package com.wongnai.web.admin.{packet};
  *
  * @author {auther}
  */
-public class CreateOrUpdate{1}Form extends AbstractCreateOrUpdateForm<{interface}, {key}> {{
+public class CreateOrUpdate{interface}Form extends AbstractCreateOrUpdateForm<{interface}, {entitykey}> {{
 {variable}
 
 	/**
@@ -147,3 +147,31 @@ public class CreateOrUpdate{1}Form extends AbstractCreateOrUpdateForm<{interface
 	}}
 }}
 """
+
+FORM_GET_METHOD_IMPL_TEMPLATE="""	/**
+	 * Gets {callname}.
+	 *
+	 * @return {callname}
+	 */
+	public {ftype} get{upper}() {{
+		return {name};
+	}}"""
+
+FORM_SET_METHOD_IMPL_TEMPLATE="""	/**
+	 * Sets {callname}.
+	 *
+	 * @param {name}
+	 *            {callname}
+	 */
+	public void set{upper}({ftype} {name}) {{
+		this.{name} = {name};
+	}}"""
+
+FORM_IS_METHOD_IMPL_TEMPLATE="""	/**
+	 * Checks if this is {callname} or not.
+	 *
+	 * @return {{@code true}} if this is %s
+	 */
+	public {ftype} is{upper}() {{
+		return {name};
+	}}"""

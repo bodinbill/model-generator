@@ -16,6 +16,11 @@ class TemplateUtils:
         return string.join([f.lower() for f in l]," ")
 
     @staticmethod
+    def splitCamel(value):
+        s=TemplateUtils.splitUpper(value,"")
+        return s[0].lower()+s[1:]
+
+    @staticmethod
     def splitUpper(value, separator=" "):
         l=TemplateUtils.split(value)
         return string.join([f.lower().upper()[0]+f.lower()[1:] for f in l],separator)

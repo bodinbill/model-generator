@@ -24,19 +24,33 @@ class FormTemplate(Template):
                 methods+=self._generateGetMethod(data[0],data[1])
 
             prefix="\n\n"
+            methods+=prefix
+            methods+=self._generateSetMethod(data[0],data[1])
 
         upper=TemplateUtils.splitUpper(name,"")
+        lower=TemplateUtils.splitLower(name)
+        camel=TemplateUtils.splitCamel(name)
+        getterSetter=privates+"\n"+methods
         
-        return tptype.TEST_TEMPLATE%\
-              (datas["package"],upper,upper,methods)
+        return tptype.FORM_TEMPLATE.format(packet=datas["package"], interface=upper, auther=datas["author"],\
+                                           entitykey=datas["key"],variable=getterSetter,name=lower,camel=camel,\
+                                           fill="")
 
-    def _generateGetMethod(self,name,type):
+    def _generateGetMethod(self,name,t):
         upper=TemplateUtils.splitUpper(name,"")
-        full=TemplateUtils.splitFull(name)
+        lower=TemplateUtils.splitLower(name)
         
-        return tptype.TEST_METHOD_TEMPLATE%(upper,upper,upper,full,upper,full)
+        return tptype.FORM_GET_METHOD_IMPL_TEMPLATE.format(ftype=t,upper=upper,name=name,callname=lower)
 
-    def _generateIsMethod(self,name,type):
+    def _generateIsMethod(self,name,t):
         upper=TemplateUtils.splitUpper(name,"")
+        lower=TemplateUtils.splitLower(name)
         
-        return tptype.TEST_IS_METHOD_TEMPLATE%(upper,upper,upper,upper)
+        return tptype.FORM_IS_METHOD_IMPL_TEMPLATE.format(ftype=t,upper=upper,name=name,callname=lower)
+
+    def _generateSetMethod(self,name,t):
+        upper=TemplateUtils.splitUpper(name,"")
+        lower=TemplateUtils.splitLower(name)
+        
+        return tptype.FORM_SET_METHOD_IMPL_TEMPLATE.format(ftype=t,upper=upper,name=name,callname=lower)
+
