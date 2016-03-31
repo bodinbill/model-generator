@@ -184,6 +184,7 @@ FILTER_TEMPLATE="""package com.wongnai.domain.model.{packet};
  * @author {auther}
  */
 public class {interface}Filter implements ValueObject<String> {{
+        private static final long serialVersionUID = 1L;
 {variable}
 
 	/**
@@ -235,6 +236,14 @@ public class {interface}Filter implements ValueObject<String> {{
 	@Override
 	public String toString() {{
 		return ReflectionToStringBuilder.toString(this);
+	}}
+
+	/**
+	 * {{@inheritDoc}}
+	 */
+	@Override
+	public String getValue() {{
+		return toString();
 	}}
 }}
 """
