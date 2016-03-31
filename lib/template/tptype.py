@@ -84,16 +84,16 @@ public class %sImplTest {
 
 TEST_METHOD_TEMPLATE="""	@Test
 	public void test%s() {
-		Assert.assertThat(underTest.get%s(),CoreMatcher.nullValue());
+		Assert.assertThat(underTest.get%s(),CoreMatchers.nullValue());
 		underTest.set%s(%s);
-		Assert.assertThat(underTest.get%s(),CoreMatcher.equalTo(%s));
+		Assert.assertThat(underTest.get%s(),CoreMatchers.equalTo(%s));
 	}"""
 
 TEST_IS_METHOD_TEMPLATE="""	@Test
 	public void test%s() {
-		Assert.assertThat(underTest.is%s(),CoreMatcher.equalTo(false));
+		Assert.assertThat(underTest.is%s(),CoreMatchers.equalTo(false));
 		underTest.set%s(true);
-		Assert.assertThat(underTest.is%s(),CoreMatcher.equalTo(true));
+		Assert.assertThat(underTest.is%s(),CoreMatchers.equalTo(true));
 	}"""
 
 TEST_REPOSITORY_HIBERNATE_TEMPLATE = """package com.wongnai.infrastructure.hibernate;
@@ -174,4 +174,194 @@ FORM_IS_METHOD_IMPL_TEMPLATE="""	/**
 	 */
 	public {ftype} is{upper}() {{
 		return {name};
+	}}"""
+
+FILTER_TEMPLATE="""package com.wongnai.domain.model.{packet};
+
+/**
+ * {interface} filter.
+ *
+ * @author {auther}
+ */
+public class {interface}Filter implements ValueObject<String> {{
+{variable}
+
+	/**
+	 * Checks if this filter is required or not. A filter is required only if at
+	 * least one property is set.
+	 *
+	 * @return {{@code true}} if this filter is required
+	 */
+	public boolean isRequired() {{
+		return {required};
+	}}
+
+	/**
+	 * {{@inheritDoc}}
+	 */
+	@Override
+	public int hashCode() {{
+		HashCodeBuilder b = new HashCodeBuilder();
+
+		b{hashAppends};
+
+		return b.toHashCode();
+	}}
+
+	/**
+	 * {{@inheritDoc}}
+	 */
+	@Override
+	public boolean equals(Object obj) {{
+		if (obj == null) {{
+			return false;
+		}} else if (obj == this) {{
+			return true;
+		}} else if (!(obj instanceof {interface}Filter)) {{
+			return false;
+		}} else {{
+			{interface}Filter rhs = (({interface}Filter) obj);
+			EqualsBuilder b = new EqualsBuilder();
+
+{equalsAppends}
+
+			return b.isEquals();
+		}}
+	}}
+	
+        /**
+	 * {{@inheritDoc}}
+	 */
+	@Override
+	public String toString() {{
+		return ReflectionToStringBuilder.toString(this);
+	}}
+}}
+"""
+
+FIlTER_HAS_METHOD_TEMPLATE="""	/**
+	 * Checks if {callname} is set or not.
+	 *
+	 * @return {{@code true}} if {callname} is set.
+	 */
+	public boolean has{upper}() {{
+		return {name} != null;
+	}}"""
+
+FILTER_TEST_TEMPLATE="""package com.wongnai.domain.model.{packet};
+
+public class {interface}FilterTest {{
+	private {interface}Filter underTest;
+	private {interface}Filter underTest2;
+
+	@Before
+	public void setUp() {{
+		underTest = new {interface}Filter();
+	}}
+	
+{testunit}
+	
+	@Test
+	public void testToString() throws Exception {{
+		fillProperties(underTest);
+
+		Assert.assertThat(underTest.toString(), CoreMatchers.equalTo(ReflectionToStringBuilder.toString(underTest)));
+		Assert.assertThat(underTest.getValue(), CoreMatchers.equalTo(underTest.toString()));
+	}}
+
+	@Test
+	public void testEqualsAll() {{
+		setUpUnderTestsForEquals();
+
+		Assert.assertThat(underTest.equals(underTest2), CoreMatchers.equalTo(true));
+		Assert.assertThat(underTest2.equals(underTest), CoreMatchers.equalTo(true));
+	}}
+
+	private void setUpUnderTestsForEquals() {{
+		underTest2 = new {interface}Filter();
+
+		fillProperties(underTest);
+		fillProperties(underTest2);
+	}}
+
+	private void fillProperties({interface}Filter filter) {{
+{properties}
+	}}
+
+	@Test
+	public void testEqualsSome() {{
+		underTest2 = new {interface}Filter();
+
+		underTest.setRegionId(TestCase.ANY_LONG);
+		underTest2.setRegionId(TestCase.ANY_LONG);
+
+		Assert.assertThat(underTest.equals(underTest2), CoreMatchers.equalTo(true));
+		Assert.assertThat(underTest2.equals(underTest), CoreMatchers.equalTo(true));
+	}}
+
+	@Test
+	public void testEqualsSame() {{
+		Assert.assertThat(underTest.equals(underTest), CoreMatchers.equalTo(true));
+	}}
+ 
+	private void assertNotEquals() {{
+		Assert.assertThat(underTest.equals(underTest2), CoreMatchers.equalTo(false));
+		Assert.assertThat(underTest2.equals(underTest), CoreMatchers.equalTo(false));
+	}}
+
+	@Test
+	public void testNotEqualsNull() {{
+		Assert.assertThat(underTest.equals(null), CoreMatchers.equalTo(false));
+	}}
+
+	@Test
+	public void testNotEqualsOther() {{
+		Assert.assertThat(underTest.equals(new Object()), CoreMatchers.equalTo(false));
+	}}
+
+	@Test
+	public void testHash() {{
+		underTest2 = new {interface}Filter();
+
+		underTest.setRegionId(TestCase.ANY_LONG);
+		underTest2.setRegionId(TestCase.ANY_LONG);
+
+		Assert.assertThat(underTest2.hashCode(), CoreMatchers.equalTo(underTest.hashCode()));
+	}}
+
+	@Test
+	public void testRequire() {{
+		fillProperties(underTest);
+
+		// TODO
+	}}
+}}
+"""
+
+FILTER_METHOD_TEST="""	@Test
+	public void test{upper}() {{
+		Assert.assertThat(underTest.get{upper}(), CoreMatchers.nullValue());
+
+		underTest.set{upper}(TestCase.ANY_STRING);
+
+		Assert.assertThat(underTest.get{upper}(), CoreMatchers.equalTo(TestCase.ANY_STRING));
+	}}
+ 
+	@Test
+	public void testHas{upper}() {{
+		Assert.assertThat(underTest.has{upper}(), CoreMatchers.equalTo(false));
+		underTest.set{upper}(null);
+		Assert.assertThat(underTest.has{upper}(), CoreMatchers.equalTo(false));
+
+		underTest.set{upper}(TestCase.ANY_STRING);
+		Assert.assertThat(underTest.has{upper}(), CoreMatchers.equalTo(true));
+	}}
+	
+	@Test
+	public void test{upper}NotEquals() {{
+		setUpUnderTestsForEquals();
+
+		underTest2.set{upper}(null);
+
+		assertNotEquals();
 	}}"""

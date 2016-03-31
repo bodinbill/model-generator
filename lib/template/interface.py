@@ -45,5 +45,5 @@ class InterfaceTemplate(Template):
         lower=TemplateUtils.splitLower(name)
         upper=TemplateUtils.splitUpper(name,"")
         
-        return tptype.SET_METHOD_TEMPLATE%(lower,name,lower,upper,type,lower)
+        return tptype.SET_METHOD_TEMPLATE%(lower,name,lower,upper,type,name)
 

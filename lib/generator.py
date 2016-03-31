@@ -3,6 +3,9 @@ from template.implement import ImplementTemplate
 from template.repositoryhibernatetest import RepositoryHibernateTestTemplate
 from template.test import TestTemplate
 from template.form import FormTemplate
+from template.filter import FilterTemplate
+from template.filtertest import FilterTestTemplate
+
 from reader import Reader
 
 class Generator:
@@ -15,7 +18,7 @@ class Generator:
 
         tps=[InterfaceTemplate(datas), ImplementTemplate(datas), \
              TestTemplate(datas), RepositoryHibernateTestTemplate(datas), \
-             FormTemplate(datas)]
+             FormTemplate(datas), FilterTemplate(datas), FilterTestTemplate(datas)]
 
         for tp in tps:
             print tp.execute()
