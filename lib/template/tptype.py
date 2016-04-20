@@ -341,8 +341,8 @@ public class {interface}FilterTest {{
 	@Test
 	public void testRequire() {{
 		fillProperties(underTest);
-
-		// TODO
+		Assert.assertThat(underTest.isRequired(), CoreMatchers.equalTo(true));
+{requires}
 	}}
 }}
 """
@@ -351,9 +351,9 @@ FILTER_METHOD_TEST="""	@Test
 	public void test{upper}() {{
 		Assert.assertThat(underTest.get{upper}(), CoreMatchers.nullValue());
 
-		underTest.set{upper}(TestCase.ANY_STRING);
+		underTest.set{upper}(TestCase.ANY_{uppertype});
 
-		Assert.assertThat(underTest.get{upper}(), CoreMatchers.equalTo(TestCase.ANY_STRING));
+		Assert.assertThat(underTest.get{upper}(), CoreMatchers.equalTo(TestCase.ANY_{uppertype}));
 	}}
  
 	@Test
@@ -362,7 +362,7 @@ FILTER_METHOD_TEST="""	@Test
 		underTest.set{upper}(null);
 		Assert.assertThat(underTest.has{upper}(), CoreMatchers.equalTo(false));
 
-		underTest.set{upper}(TestCase.ANY_STRING);
+		underTest.set{upper}(TestCase.ANY_{uppertype});
 		Assert.assertThat(underTest.has{upper}(), CoreMatchers.equalTo(true));
 	}}
 	
