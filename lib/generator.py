@@ -13,8 +13,6 @@ class Generator:
     def __init__(self, filename):
         self.reader = Reader(filename)
         self._collectTemplate()
-        
-
    
     def _collectTemplate(self):
         TemplateType.GET_METHOD_TEMPLATE = self._collect("get-method") 
@@ -40,7 +38,6 @@ class Generator:
         
     def _collect(self, filename):
         return open("./static/tpfile/%s.tp" % filename, "r").read()
-
 
     def execute(self):
         self.reader.execute()
