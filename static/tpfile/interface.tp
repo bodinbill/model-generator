@@ -1,0 +1,10 @@
+		package com.wongnai.domain.model.%s;
+	
+	/**
+	 * %s.
+	 *
+	 * @author %s
+	 */
+	public interface %s extends %s<%s> {
+	%s
+	}

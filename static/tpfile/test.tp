@@ -1,0 +1,10 @@
+		package com.wongnai.domain.model.%s.internal;
+	
+	public class %sImplTest {
+		@Before
+		public void setUp() {
+	            underTest = new %sImpl();
+		}
+	
+	%s
+	}

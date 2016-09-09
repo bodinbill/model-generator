@@ -1,0 +1,27 @@
+		@Test
+		public void test{upper}() {{
+			Assert.assertThat(underTest.get{upper}(), CoreMatchers.nullValue());
+	
+			underTest.set{upper}(TestCase.ANY_{uppertype});
+	
+			Assert.assertThat(underTest.get{upper}(), CoreMatchers.equalTo(TestCase.ANY_{uppertype}));
+		}}
+	 
+		@Test
+		public void testHas{upper}() {{
+			Assert.assertThat(underTest.has{upper}(), CoreMatchers.equalTo(false));
+			underTest.set{upper}(null);
+			Assert.assertThat(underTest.has{upper}(), CoreMatchers.equalTo(false));
+	
+			underTest.set{upper}(TestCase.ANY_{uppertype});
+			Assert.assertThat(underTest.has{upper}(), CoreMatchers.equalTo(true));
+		}}
+		
+		@Test
+		public void test{upper}NotEquals() {{
+			setUpUnderTestsForEquals();
+	
+			underTest2.set{upper}(null);
+	
+			assertNotEquals();
+		}}

@@ -1,0 +1,19 @@
+		package com.wongnai.web.admin.{packet};
+	/**
+	 * The base form of {{@link {interface}}}.
+	 *
+	 * @author {auther}
+	 */
+	public class CreateOrUpdate{interface}Form extends AbstractCreateOrUpdateForm<{interface}, {entitykey}> {{
+	{variable}
+	
+		/**
+		 * Fills inputs to the given {name}.
+		 *
+		 * @param {camel}
+		 *            {name}
+		 */
+		protected void fill({interface} {camel}) {{
+			{fill}
+		}}
+	}}

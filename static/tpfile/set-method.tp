@@ -1,0 +1,7 @@
+		/**
+		 * Sets %s.
+		 *
+		 * @param %s
+		 *            %s
+		 */
+		void set%s(%s %s);

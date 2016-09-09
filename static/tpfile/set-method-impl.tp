@@ -1,0 +1,4 @@
+		@Override
+		public void set%s(%s %s) {
+			this.%s = %s;
+		}

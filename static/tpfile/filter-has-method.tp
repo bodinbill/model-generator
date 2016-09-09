@@ -1,0 +1,8 @@
+		/**
+		 * Checks if {callname} is set or not.
+		 *
+		 * @return {{@code true}} if {callname} is set.
+		 */
+		public boolean has{upper}() {{
+			return {name} != null;
+		}}

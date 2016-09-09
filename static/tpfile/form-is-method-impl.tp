@@ -1,0 +1,8 @@
+		/**
+		 * Checks if this is {callname} or not.
+		 *
+		 * @return {{@code true}} if this is %s
+		 */
+		public {ftype} is{upper}() {{
+			return {name};
+		}}

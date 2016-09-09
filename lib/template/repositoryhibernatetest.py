@@ -1,5 +1,5 @@
 from template import Template 
-import tptype
+from tptype import TemplateType
 
 class RepositoryHibernateTestTemplate(Template):
     def __init__(self, datas):
@@ -10,4 +10,4 @@ class RepositoryHibernateTestTemplate(Template):
 
         entityName = datas["name"]
 
-        return tptype.TEST_REPOSITORY_HIBERNATE_TEMPLATE.format(entityName)
+        return TemplateType.TEST_REPOSITORY_HIBERNATE_TEMPLATE.format(entityName)

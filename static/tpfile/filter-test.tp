@@ -1,0 +1,88 @@
+		package com.wongnai.domain.model.{packet};
+	
+	public class {interface}FilterTest {{
+		private {interface}Filter underTest;
+		private {interface}Filter underTest2;
+	
+		@Before
+		public void setUp() {{
+			underTest = new {interface}Filter();
+		}}
+		
+	{testunit}
+		
+		@Test
+		public void testToString() throws Exception {{
+			fillProperties(underTest);
+	
+			Assert.assertThat(underTest.toString(), CoreMatchers.equalTo(ReflectionToStringBuilder.toString(underTest)));
+			Assert.assertThat(underTest.getValue(), CoreMatchers.equalTo(underTest.toString()));
+		}}
+	
+		@Test
+		public void testEqualsAll() {{
+			setUpUnderTestsForEquals();
+	
+			Assert.assertThat(underTest.equals(underTest2), CoreMatchers.equalTo(true));
+			Assert.assertThat(underTest2.equals(underTest), CoreMatchers.equalTo(true));
+		}}
+	
+		private void setUpUnderTestsForEquals() {{
+			underTest2 = new {interface}Filter();
+	
+			fillProperties(underTest);
+			fillProperties(underTest2);
+		}}
+	
+		private void fillProperties({interface}Filter filter) {{
+	{properties}
+		}}
+	
+		@Test
+		public void testEqualsSome() {{
+			underTest2 = new {interface}Filter();
+	
+			underTest.setRegionId(TestCase.ANY_LONG);
+			underTest2.setRegionId(TestCase.ANY_LONG);
+	
+			Assert.assertThat(underTest.equals(underTest2), CoreMatchers.equalTo(true));
+			Assert.assertThat(underTest2.equals(underTest), CoreMatchers.equalTo(true));
+		}}
+	
+		@Test
+		public void testEqualsSame() {{
+			Assert.assertThat(underTest.equals(underTest), CoreMatchers.equalTo(true));
+		}}
+	 
+		private void assertNotEquals() {{
+			Assert.assertThat(underTest.equals(underTest2), CoreMatchers.equalTo(false));
+			Assert.assertThat(underTest2.equals(underTest), CoreMatchers.equalTo(false));
+		}}
+	
+		@Test
+		public void testNotEqualsNull() {{
+			Assert.assertThat(underTest.equals(null), CoreMatchers.equalTo(false));
+		}}
+	
+		@Test
+		public void testNotEqualsOther() {{
+			Assert.assertThat(underTest.equals(new Object()), CoreMatchers.equalTo(false));
+		}}
+	
+		@Test
+		public void testHash() {{
+			underTest2 = new {interface}Filter();
+	
+			underTest.setRegionId(TestCase.ANY_LONG);
+			underTest2.setRegionId(TestCase.ANY_LONG);
+	
+			Assert.assertThat(underTest2.hashCode(), CoreMatchers.equalTo(underTest.hashCode()));
+		}}
+	
+		@Test
+		public void testRequire() {{
+			fillProperties(underTest);
+			Assert.assertThat(underTest.isRequired(), CoreMatchers.equalTo(true));
+	{requires}
+		}}
+	}}

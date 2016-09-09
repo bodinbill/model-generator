@@ -1,5 +1,5 @@
 from template import Template, TemplateUtils
-import tptype
+from tptype import TemplateType
 
 class FormTemplate(Template):
     def __init__(self, datas):
@@ -32,7 +32,7 @@ class FormTemplate(Template):
         camel = TemplateUtils.splitCamel(name)
         getterSetter = privates + "\n" + methods
         
-        return tptype.FORM_TEMPLATE.format(packet=datas["package"], interface=upper, auther=datas["author"], \
+        return TemplateType.FORM_TEMPLATE.format(packet=datas["package"], interface=upper, auther=datas["author"], \
                                            entitykey=datas["key"], variable=getterSetter, name=lower, camel=camel, \
                                            fill="")
 
@@ -40,17 +40,17 @@ class FormTemplate(Template):
         upper = TemplateUtils.splitUpper(name, "")
         lower = TemplateUtils.splitLower(name)
         
-        return tptype.FORM_GET_METHOD_IMPL_TEMPLATE.format(ftype=t, upper=upper, name=name, callname=lower)
+        return TemplateType.FORM_GET_METHOD_IMPL_TEMPLATE.format(ftype=t, upper=upper, name=name, callname=lower)
 
     def _generateIsMethod(self, name, t):
         upper = TemplateUtils.splitUpper(name, "")
         lower = TemplateUtils.splitLower(name)
         
-        return tptype.FORM_IS_METHOD_IMPL_TEMPLATE.format(ftype=t, upper=upper, name=name, callname=lower)
+        return TemplateType.FORM_IS_METHOD_IMPL_TEMPLATE.format(ftype=t, upper=upper, name=name, callname=lower)
 
     def _generateSetMethod(self, name, t):
         upper = TemplateUtils.splitUpper(name, "")
         lower = TemplateUtils.splitLower(name)
         
-        return tptype.FORM_SET_METHOD_IMPL_TEMPLATE.format(ftype=t, upper=upper, name=name, callname=lower)
+        return TemplateType.FORM_SET_METHOD_IMPL_TEMPLATE.format(ftype=t, upper=upper, name=name, callname=lower)
 

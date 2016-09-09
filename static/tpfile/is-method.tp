@@ -1,0 +1,6 @@
+		/**
+		 * Checks if this is %s or not.
+		 *
+		 * @return {@code true} if this is %s
+		 */
+		%s is%s();

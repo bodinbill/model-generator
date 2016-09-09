@@ -1,0 +1,6 @@
+		@Test
+		public void test%s() {
+			Assert.assertThat(underTest.is%s(),CoreMatchers.equalTo(false));
+			underTest.set%s(true);
+			Assert.assertThat(underTest.is%s(),CoreMatchers.equalTo(true));
+		}

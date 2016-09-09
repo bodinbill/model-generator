@@ -1,0 +1,58 @@
+		package com.wongnai.domain.model.{packet};
+	
+	/**
+	 * {interface} filter.
+	 *
+	 * @author {auther}
+	 */
+	public class {interface}Filter implements ValueObject<String> {{
+	        private static final long serialVersionUID = 1L;
+	{variable}
+	
+		/**
+		 * Checks if this filter is required or not. A filter is required only if at
+		 * least one property is set.
+		 *
+		 * @return {{@code true}} if this filter is required
+		 */
+		public boolean isRequired() {{
+			return {required};
+		}}
+	
+		@Override
+		public int hashCode() {{
+			HashCodeBuilder b = new HashCodeBuilder();
+	
+			b{hashAppends};
+	
+			return b.toHashCode();
+		}}
+	
+		@Override
+		public boolean equals(Object obj) {{
+			if (obj == null) {{
+				return false;
+			}} else if (obj == this) {{
+				return true;
+			}} else if (!(obj instanceof {interface}Filter)) {{
+				return false;
+			}} else {{
+				{interface}Filter rhs = (({interface}Filter) obj);
+				EqualsBuilder b = new EqualsBuilder();
+	
+	{equalsAppends}
+	
+				return b.isEquals();
+			}}
+		}}
+		
+		@Override
+		public String toString() {{
+			return ReflectionToStringBuilder.toString(this);
+		}}
+		
+		@Override
+		public String getValue() {{
+			return toString();
+		}}
+	}}

@@ -1,5 +1,5 @@
 from template import Template, TemplateUtils
-import tptype
+from tptype import TemplateType
 
 class TestTemplate(Template):
     def __init__(self, datas):
@@ -27,18 +27,18 @@ class TestTemplate(Template):
 
         upper = TemplateUtils.splitUpper(name, "")
         
-        return tptype.TEST_TEMPLATE % \
+        return TemplateType.TEST_TEMPLATE % \
               (datas["package"], upper, upper, methods)
 
     def _generateGetMethod(self, name, t):
         upper = TemplateUtils.splitUpper(name, "")
         full = TemplateUtils.splitFull(name)
         
-        return tptype.TEST_METHOD_TEMPLATE % (upper, upper, upper, full, upper, full)
+        return TemplateType.TEST_METHOD_TEMPLATE % (upper, upper, upper, full, upper, full)
 
     def _generateIsMethod(self, name, t):
         upper = TemplateUtils.splitUpper(name, "")
         
-        return tptype.TEST_IS_METHOD_TEMPLATE % (upper, upper, upper, upper)
+        return TemplateType.TEST_IS_METHOD_TEMPLATE % (upper, upper, upper, upper)
 
 

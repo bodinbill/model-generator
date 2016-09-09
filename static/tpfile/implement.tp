@@ -1,0 +1,12 @@
+		package com.wongnai.domain.model.%s.internal;
+	
+	/**
+	 * Default implementation of {@link %s}.
+	 *
+	 * @author %s
+	 */
+	public class %sImpl extends %s<%s> implements %s {
+		private static final long serialVersionUID = 1L;
+	%s
+	%s
+	}

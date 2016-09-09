@@ -1,0 +1,9 @@
+		/**
+		 * Sets {callname}.
+		 *
+		 * @param {name}
+		 *            {callname}
+		 */
+		public void set{upper}({ftype} {name}) {{
+			this.{name} = {name};
+		}}

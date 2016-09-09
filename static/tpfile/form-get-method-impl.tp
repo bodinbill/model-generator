@@ -1,0 +1,8 @@
+		/**
+		 * Gets {callname}.
+		 *
+		 * @return {callname}
+		 */
+		public {ftype} get{upper}() {{
+			return {name};
+		}}

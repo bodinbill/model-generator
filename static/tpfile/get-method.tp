@@ -1,0 +1,6 @@
+	/**
+	 * Gets %s.
+	 *
+	 * @return %s
+	 */
+	%s get%s();
