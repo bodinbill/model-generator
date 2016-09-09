@@ -1,4 +1,4 @@
-from template import Temlpate, TemplateUtils
+from template import Template 
 
 class RepositoryHibernateTemplate(Template):
     def __init__(self, datas):

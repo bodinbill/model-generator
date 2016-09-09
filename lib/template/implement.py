@@ -6,44 +6,44 @@ class ImplementTemplate(Template):
         super(self.__class__, self).__init__(datas)
 
     def execute(self):
-        datas=self.getDatas()
-        name=datas["name"]
+        datas = self.getDatas()
+        name = datas["name"]
 
-        privates=""
+        privates = ""
         for data in self.getProperties():
-            privates+="	private %s %s;\n"%(data[1],data[0])
+            privates += "	private %s %s;\n" % (data[1], data[0])
 
-        prefix=""
-        methods=""
+        prefix = ""
+        methods = ""
         
         for data in self.getProperties():
-            methods+=prefix
+            methods += prefix
             if data[1] == "boolean":
-                methods+=self._generateIsMethod(data[0],data[1])
+                methods += self._generateIsMethod(data[0], data[1])
             else:
-                methods+=self._generateGetMethod(data[0],data[1])
+                methods += self._generateGetMethod(data[0], data[1])
 
-            prefix="\n\n"
-            methods+=prefix
-            methods+=self._generateSetMethod(data[0],data[1])
+            prefix = "\n\n"
+            methods += prefix
+            methods += self._generateSetMethod(data[0], data[1])
 
-        upper=TemplateUtils.splitUpper(name,"")
+        upper = TemplateUtils.splitUpper(name, "")
         
-        return tptype.IMPLEMENT_TEMPLATE%\
-              (datas["package"],upper,datas["author"],upper,datas["abstract"],datas["key"],upper,privates,methods)
+        return tptype.IMPLEMENT_TEMPLATE % \
+              (datas["package"], upper, datas["author"], upper, datas["abstract"], datas["key"], upper, privates, methods)
 
-    def _generateGetMethod(self,name,type):
-        upper=TemplateUtils.splitUpper(name,"")
+    def _generateGetMethod(self, name, data_type):
+        upper = TemplateUtils.splitUpper(name, "")
         
-        return tptype.GET_METHOD_IMPL_TEMPLATE%(type,upper,name)
+        return tptype.GET_METHOD_IMPL_TEMPLATE % (data_type, upper, name)
 
-    def _generateIsMethod(self,name,type):
-        upper=TemplateUtils.splitUpper(name,"")
+    def _generateIsMethod(self, name, data_type):
+        upper = TemplateUtils.splitUpper(name, "")
         
-        return tptype.IS_METHOD_IMPL_TEMPLATE%(type,upper,name)
+        return tptype.IS_METHOD_IMPL_TEMPLATE % (data_type, upper, name)
 
-    def _generateSetMethod(self,name,type):
-        upper=TemplateUtils.splitUpper(name,"")
+    def _generateSetMethod(self, name, data_type):
+        upper = TemplateUtils.splitUpper(name, "")
         
-        return tptype.SET_METHOD_IMPL_TEMPLATE%(upper,type,name,name,name)
+        return tptype.SET_METHOD_IMPL_TEMPLATE % (upper, data_type, name, name, name)
 

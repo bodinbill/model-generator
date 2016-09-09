@@ -14,9 +14,9 @@ class Generator:
 
     def execute(self):
         self.reader.execute()
-        datas=self.reader.getData()
+        datas = self.reader.getData()
 
-        tps=[InterfaceTemplate(datas), ImplementTemplate(datas), \
+        tps = [InterfaceTemplate(datas), ImplementTemplate(datas), \
              TestTemplate(datas), RepositoryHibernateTestTemplate(datas), \
              FormTemplate(datas), FilterTemplate(datas), FilterTestTemplate(datas)]
 

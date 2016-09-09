@@ -1,11 +1,11 @@
-GET_METHOD_TEMPLATE="""	/**
+GET_METHOD_TEMPLATE = """	/**
 	 * Gets %s.
 	 *
 	 * @return %s
 	 */
 	%s get%s();"""
 
-SET_METHOD_TEMPLATE="""	/**
+SET_METHOD_TEMPLATE = """	/**
 	 * Sets %s.
 	 *
 	 * @param %s
@@ -13,14 +13,14 @@ SET_METHOD_TEMPLATE="""	/**
 	 */
 	void set%s(%s %s);"""
 
-IS_METHOD_TEMPLATE="""	/**
+IS_METHOD_TEMPLATE = """	/**
 	 * Checks if this is %s or not.
 	 *
 	 * @return {@code true} if this is %s
 	 */
 	%s is%s();"""
 
-INTERFACE_TEMPLATE="""package com.wongnai.domain.model.%s;
+INTERFACE_TEMPLATE = """package com.wongnai.domain.model.%s;
 
 /**
  * %s.
@@ -32,7 +32,7 @@ public interface %s extends %s<%s> {
 }
 """
 
-IMPLEMENT_TEMPLATE="""package com.wongnai.domain.model.%s.internal;
+IMPLEMENT_TEMPLATE = """package com.wongnai.domain.model.%s.internal;
 
 /**
  * Default implementation of {@link %s}.
@@ -46,31 +46,25 @@ public class %sImpl extends %s<%s> implements %s {
 }
 """
 
-GET_METHOD_IMPL_TEMPLATE="""	/**
-	 * {@inheritDoc}
-	 */
+GET_METHOD_IMPL_TEMPLATE = """
 	@Override
 	public %s get%s() {
 		return %s;
 	}"""
 
-SET_METHOD_IMPL_TEMPLATE="""	/**
-	 * {@inheritDoc}
-	 */
+SET_METHOD_IMPL_TEMPLATE = """
 	@Override
 	public void set%s(%s %s) {
 		this.%s = %s;
 	}"""
 
-IS_METHOD_IMPL_TEMPLATE="""	/**
-	 * {@inheritDoc}
-	 */
+IS_METHOD_IMPL_TEMPLATE = """
 	@Override
 	public %s is%s() {
 		return %s;
 	}"""
 
-TEST_TEMPLATE="""package com.wongnai.domain.model.%s.internal;
+TEST_TEMPLATE = """package com.wongnai.domain.model.%s.internal;
 
 public class %sImplTest {
 	@Before
@@ -82,14 +76,14 @@ public class %sImplTest {
 }
 """
 
-TEST_METHOD_TEMPLATE="""	@Test
+TEST_METHOD_TEMPLATE = """	@Test
 	public void test%s() {
 		Assert.assertThat(underTest.get%s(),CoreMatchers.nullValue());
 		underTest.set%s(%s);
 		Assert.assertThat(underTest.get%s(),CoreMatchers.equalTo(%s));
 	}"""
 
-TEST_IS_METHOD_TEMPLATE="""	@Test
+TEST_IS_METHOD_TEMPLATE = """	@Test
 	public void test%s() {
 		Assert.assertThat(underTest.is%s(),CoreMatchers.equalTo(false));
 		underTest.set%s(true);
@@ -127,7 +121,7 @@ public class {0}RepositoryHibernateTest
 }}
 """
 
-FORM_TEMPLATE="""package com.wongnai.web.admin.{packet};
+FORM_TEMPLATE = """package com.wongnai.web.admin.{packet};
 /**
  * The base form of {{@link {interface}}}.
  *
@@ -148,7 +142,7 @@ public class CreateOrUpdate{interface}Form extends AbstractCreateOrUpdateForm<{i
 }}
 """
 
-FORM_GET_METHOD_IMPL_TEMPLATE="""	/**
+FORM_GET_METHOD_IMPL_TEMPLATE = """	/**
 	 * Gets {callname}.
 	 *
 	 * @return {callname}
@@ -157,7 +151,7 @@ FORM_GET_METHOD_IMPL_TEMPLATE="""	/**
 		return {name};
 	}}"""
 
-FORM_SET_METHOD_IMPL_TEMPLATE="""	/**
+FORM_SET_METHOD_IMPL_TEMPLATE = """	/**
 	 * Sets {callname}.
 	 *
 	 * @param {name}
@@ -167,7 +161,7 @@ FORM_SET_METHOD_IMPL_TEMPLATE="""	/**
 		this.{name} = {name};
 	}}"""
 
-FORM_IS_METHOD_IMPL_TEMPLATE="""	/**
+FORM_IS_METHOD_IMPL_TEMPLATE = """	/**
 	 * Checks if this is {callname} or not.
 	 *
 	 * @return {{@code true}} if this is %s
@@ -176,7 +170,7 @@ FORM_IS_METHOD_IMPL_TEMPLATE="""	/**
 		return {name};
 	}}"""
 
-FILTER_TEMPLATE="""package com.wongnai.domain.model.{packet};
+FILTER_TEMPLATE = """package com.wongnai.domain.model.{packet};
 
 /**
  * {interface} filter.
@@ -197,9 +191,6 @@ public class {interface}Filter implements ValueObject<String> {{
 		return {required};
 	}}
 
-	/**
-	 * {{@inheritDoc}}
-	 */
 	@Override
 	public int hashCode() {{
 		HashCodeBuilder b = new HashCodeBuilder();
@@ -209,9 +200,6 @@ public class {interface}Filter implements ValueObject<String> {{
 		return b.toHashCode();
 	}}
 
-	/**
-	 * {{@inheritDoc}}
-	 */
 	@Override
 	public boolean equals(Object obj) {{
 		if (obj == null) {{
@@ -230,17 +218,11 @@ public class {interface}Filter implements ValueObject<String> {{
 		}}
 	}}
 	
-        /**
-	 * {{@inheritDoc}}
-	 */
 	@Override
 	public String toString() {{
 		return ReflectionToStringBuilder.toString(this);
 	}}
-
-	/**
-	 * {{@inheritDoc}}
-	 */
+	
 	@Override
 	public String getValue() {{
 		return toString();
@@ -248,7 +230,7 @@ public class {interface}Filter implements ValueObject<String> {{
 }}
 """
 
-FIlTER_HAS_METHOD_TEMPLATE="""	/**
+FIlTER_HAS_METHOD_TEMPLATE = """	/**
 	 * Checks if {callname} is set or not.
 	 *
 	 * @return {{@code true}} if {callname} is set.
@@ -257,7 +239,7 @@ FIlTER_HAS_METHOD_TEMPLATE="""	/**
 		return {name} != null;
 	}}"""
 
-FILTER_TEST_TEMPLATE="""package com.wongnai.domain.model.{packet};
+FILTER_TEST_TEMPLATE = """package com.wongnai.domain.model.{packet};
 
 public class {interface}FilterTest {{
 	private {interface}Filter underTest;
@@ -347,7 +329,7 @@ public class {interface}FilterTest {{
 }}
 """
 
-FILTER_METHOD_TEST="""	@Test
+FILTER_METHOD_TEST = """	@Test
 	public void test{upper}() {{
 		Assert.assertThat(underTest.get{upper}(), CoreMatchers.nullValue());
 

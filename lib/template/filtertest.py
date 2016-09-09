@@ -1,7 +1,7 @@
 from template import Template, TemplateUtils
 import tptype
 
-REQUIRE_TEMPLATE="""
+REQUIRE_TEMPLATE = """
 		underTest.set{0}(null);
 		Assert.assertThat(underTest.isRequired(), CoreMatchers.equalTo({1}));"""
 
@@ -10,37 +10,35 @@ class FilterTestTemplate(Template):
         super(self.__class__, self).__init__(datas)
 
     def execute(self):
-        datas=self.getDatas()
-        name=datas["name"]
+        datas = self.getDatas()
+        name = datas["name"]
 
-        privates=""
+        privates = ""
         for data in self.getProperties():
-            privates+="	private %s %s;\n"%(data[1],data[0])
+            privates += "	private %s %s;\n" % (data[1], data[0])
 
-        prefix=""
-        methods=""
-        properties=""
-        requires=""
-        p_list=self.getProperties()
-        length=len(p_list)
+        prefix = ""
+        methods = ""
+        properties = ""
+        requires = ""
+        p_list = self.getProperties()
+        length = len(p_list)
         
         for i in range(length):
-            last=i==length-1
-            data=p_list[i]
+            last = i == length - 1
+            data = p_list[i]
             
-            upper=TemplateUtils.splitUpper(data[0],"")
-            lower=TemplateUtils.splitCamel(data[0])
-            properties+="filter.set%s(TestCase.ANY_%s);\n"%(upper,data[1].upper())
+            upper = TemplateUtils.splitUpper(data[0], "")
+            properties += "filter.set%s(TestCase.ANY_%s);\n" % (upper, data[1].upper())
             
-            methods+=prefix
-            methods+=tptype.FILTER_METHOD_TEST.format(upper=upper,uppertype=data[1].upper())
-            prefix="\n\n"
+            methods += prefix
+            methods += tptype.FILTER_METHOD_TEST.format(upper=upper, uppertype=data[1].upper())
+            prefix = "\n\n"
             
-            requires+=REQUIRE_TEMPLATE.format(upper, str(not last).lower())
+            requires += REQUIRE_TEMPLATE.format(upper, str(not last).lower())
 
-        upper=TemplateUtils.splitUpper(name,"")
-        getterSetter=privates+"\n"+methods
+        upper = TemplateUtils.splitUpper(name, "")
         
         return tptype.FILTER_TEST_TEMPLATE.format(packet=datas["package"], interface=upper, \
-                                           testunit=methods,properties=properties,requires=requires)
+                                           testunit=methods, properties=properties, requires=requires)
 

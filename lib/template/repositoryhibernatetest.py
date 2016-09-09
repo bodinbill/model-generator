@@ -1,4 +1,4 @@
-from template import Template, TemplateUtils
+from template import Template 
 import tptype
 
 class RepositoryHibernateTestTemplate(Template):
