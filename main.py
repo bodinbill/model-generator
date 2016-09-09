@@ -1,6 +1,5 @@
 from lib.generator import Generator
 
-
 def main():
     Generator("config.txt").execute()
 
