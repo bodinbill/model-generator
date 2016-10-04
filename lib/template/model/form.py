@@ -1,5 +1,5 @@
-from template import Template, TemplateUtils
-from utils import Utils
+from lib.template.template import TemplateUtils, Template
+from lib.template.utils import Utils
 
 TEMPLATE_PARAMETER_SET = """            if (isParameterSet("{param}", {param})) {{
                 {name}.setCode({param});

@@ -2,26 +2,24 @@ import os
 import re
 
 from reader import Reader
-from template.filter import FilterTemplate
-from template.filtertest import FilterTestTemplate
-from template.form import FormTemplate
-from template.formtest import FormTestTemplate
-from template.implement import ImplementTemplate
-from template.interface import InterfaceTemplate
-from template.repositoryhibernatetest import RepositoryHibernateTestTemplate
-from template.test import TestTemplate
 
 class Generator:
-    def __init__(self, configFile):
+    def __init__(self, configFile, templetes):
         self.reader = Reader(configFile)
+        self.templetes = templetes
         
     def _templateList(self):
         datas = self.reader.getData()
         
-        return [InterfaceTemplate(datas), ImplementTemplate(datas), TestTemplate(datas), \
-                RepositoryHibernateTestTemplate(datas), FormTemplate(datas), FormTestTemplate(datas), \
-                FilterTemplate(datas), FilterTestTemplate(datas)]
+        return map(lambda tp : self._template_import__private(tp)(datas), self.templetes)
    
+    def _template_import__private(self, model, filename=None):
+        if not filename:
+            filename = model.lower()
+        name = "%sTemplate" % (model)
+        
+        mod = __import__("lib.template.model.%s" % filename, fromlist=[name])
+        return  getattr(mod, name)
     
     def _write(self, files):
         path = "dist"

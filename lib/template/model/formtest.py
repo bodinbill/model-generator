@@ -1,6 +1,5 @@
-from template import Template 
-from template import TemplateUtils
-from utils import Utils
+from lib.template.template import TemplateUtils, Template
+from lib.template.utils import Utils
 
 class FormTestTemplate(Template):
     def __init__(self, datas):

@@ -1,4 +1,4 @@
-from template import Template, TemplateUtils
+from lib.template.template import TemplateUtils, Template
 
 class FilterTemplate(Template):
     def __init__(self, datas):

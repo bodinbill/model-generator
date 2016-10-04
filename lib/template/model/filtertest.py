@@ -1,4 +1,4 @@
-from template import Template, TemplateUtils
+from lib.template.template import TemplateUtils, Template
 
 REQUIRE_TEMPLATE = """
 		underTest.set{0}(null);
