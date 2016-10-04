@@ -1,9 +1,8 @@
-author=Theerasak Meebunrot
-package=contactaddress
-name=ContactAddress
+author=Bodin Srisompong
+package=product
+name=ProductTag
 super=Entity
 abstract=AbstractEntity
 key=Long
-property:available=boolean
-property:name=String
-property:recipientName=String
+property:name=Name
+property:aliases=Aliases

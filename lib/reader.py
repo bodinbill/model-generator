@@ -1,6 +1,6 @@
 class Reader:
-    def __init__(self, filename):
-        self.filename = filename
+    def __init__(self, configFile):
+        self.filename = configFile
         self.data = []
         
     def execute(self):

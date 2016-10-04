@@ -5,6 +5,7 @@ from reader import Reader
 from template.filter import FilterTemplate
 from template.filtertest import FilterTestTemplate
 from template.form import FormTemplate
+from template.formtest import FormTestTemplate
 from template.implement import ImplementTemplate
 from template.interface import InterfaceTemplate
 from template.repositoryhibernatetest import RepositoryHibernateTestTemplate
@@ -13,9 +14,16 @@ from template.tptype import TemplateType
 
 
 class Generator:
-    def __init__(self, filename):
-        self.reader = Reader(filename)
+    def __init__(self, configFile):
+        self.reader = Reader(configFile)
         self._collectTemplate()
+        
+    def _templateList(self):
+        datas = self.reader.getData()
+        
+        return [InterfaceTemplate(datas), ImplementTemplate(datas), TestTemplate(datas), \
+                RepositoryHibernateTestTemplate(datas), FormTemplate(datas), FormTestTemplate(datas), \
+                FilterTemplate(datas), FilterTestTemplate(datas)]
    
     def _collectTemplate(self):
         TemplateType.GET_METHOD_TEMPLATE = self._collect("get-method") 
@@ -31,6 +39,7 @@ class Generator:
         TemplateType.TEST_IS_METHOD_TEMPLATE = self._collect("test-is-method")
         TemplateType.TEST_REPOSITORY_HIBERNATE_TEMPLATE = self._collect("test-repository-hibernate")
         TemplateType.FORM_TEMPLATE = self._collect("form")
+        TemplateType.FORM_TEMPLATE_TEST = self._collect("form-test")
         TemplateType.FORM_GET_METHOD_IMPL_TEMPLATE = self._collect("form-get-method-impl")
         TemplateType.FORM_SET_METHOD_IMPL_TEMPLATE = self._collect("form-set-method-impl")
         TemplateType.FORM_IS_METHOD_IMPL_TEMPLATE = self._collect("form-is-method-impl")
@@ -58,11 +67,8 @@ class Generator:
 
     def execute(self):
         self.reader.execute()
-        datas = self.reader.getData()
 
-        tps = [InterfaceTemplate(datas), ImplementTemplate(datas), \
-             TestTemplate(datas), RepositoryHibernateTestTemplate(datas), \
-             FormTemplate(datas), FilterTemplate(datas), FilterTestTemplate(datas)]
+        tps = self._templateList()
         
         files = {}
 

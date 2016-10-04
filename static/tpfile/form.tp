@@ -1,11 +1,11 @@
-		package com.wongnai.web.admin.{packet};
+	package com.wongnai.web.admin.{packet};
 	/**
 	 * The base form of {{@link {interface}}}.
 	 *
 	 * @author {auther}
 	 */
 	public class CreateOrUpdate{interface}Form extends AbstractCreateOrUpdateForm<{interface}, {entitykey}> {{
-	{variable}
+{variable}
 	
 		/**
 		 * Fills inputs to the given {name}.
@@ -14,6 +14,27 @@
 		 *            {name}
 		 */
 		protected void fill({interface} {camel}) {{
-			{fill}
+{fill}		}}
+
+		@Override
+		protected void extract({interface} {camel}) {{
+{extract}		}}
+
+		@Override
+		protected Map<String, String> createUsages() {{
+			return null;
+		}}
+	
+		@Override
+		protected Map<String, String> createHints() {{
+			return null;
+		}}
+		
+		@Override
+		protected Map<String, String> createLabels() {{
+			Map<String, String> labels = new HashMap<String, String>();
+			
+{labels}	
+			return labels;
 		}}
 	}}

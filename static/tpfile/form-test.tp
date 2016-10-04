@@ -1,0 +1,94 @@
+	package com.wongnai.web.admin.{packet};
+
+	public class CreateOrUpdate{interface}FormTest extends JMockTestCase {{
+		private ServiceLocatorMockery serviceLocatorMockery;
+		private CreateOrUpdate{interface}Form underTest;
+		private RepositoryMockery<{interface}Repository, {interface}, {entitykey}> {camel}RepositoryMockery;
+		private {interface}Repository mock{interface}Repository;
+	
+		@Before
+		public void setUp() {{
+			serviceLocatorMockery = new ServiceLocatorMockery(getMockery());
+			
+			{camel}RepositoryMockery = new RepositoryMockery<{interface}Repository, {interface}, {entitykey}>(
+				{interface}Repository.class, getMockery());
+			mock{interface}Repository = {camel}RepositoryMockery.getMockRepository();
+	
+			//TODO: implement
+			
+			serviceLocatorMockery.setService({interface}Repository.class, mock{interface}Repository);
+	
+			underTest = new CreateOrUpdate{interface}Form();
+			underTest.initialize();
+		}}
+	
+		@After
+		public void cleanUp() {{
+			serviceLocatorMockery.clear();
+		}}
+
+		@Test
+		public void testHints() {{
+			Assert.assertThat(underTest.getHints(), CoreMatchers.nullValue());
+		}}
+	
+		@Test
+		public void testUsages() {{
+			Assert.assertThat(underTest.getUsages(), CoreMatchers.nullValue());
+		}}
+	
+		@Test
+		public void testLabels() {{
+			Map<String, String> values = underTest.getLabels();
+	
+			Assert.assertThat(values.size(), CoreMatchers.equalTo({labelAmount}));
+{labels}		}}
+
+		@Test
+		public void testFill() {{
+			fillForm();
+	
+			{interface} {camel} = new {interface}Impl();
+			underTest.fill({camel});
+	
+{fill}		}}
+	
+		private void fillForm() {{
+{fillForm}		}}
+
+		@Test
+		public void testLoadToEmptyForm() {{
+			{interface} {camel} = create{interface}();
+	
+			underTest.load({camel}.getId());
+			underTest.extract();
+	
+			assertForm({camel});
+		}}
+	
+		private void assertForm({interface} {camel}) {{
+{assertForm}		}}
+	
+		private {interface} create{interface}() {{
+			{interface}Impl {camel} = new {interface}Impl();
+			mock{interface}Repository.store({camel});
+	
+{create}
+			return {camel};
+		}}
+
+		@Test
+		public void testLoadNotEmptyForm() {{
+			{interface} {camel} = create{interface}();
+	
+			fillForm();
+	
+			underTest.load({camel}.getId());
+			underTest.extract();
+	
+			assertNotEqualForm({camel});
+		}}
+
+		private void assertNotEqualForm({interface} {camel}) {{
+{assertNotForm}		}}
+	}}
