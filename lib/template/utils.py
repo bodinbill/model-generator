@@ -2,7 +2,6 @@ import random
 import string
 from lib.template.template import TemplateUtils
 
-
 class Utils:
     @staticmethod
     def formProperties(properties):

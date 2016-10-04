@@ -2,6 +2,8 @@ import re
 import string
 
 class TemplateUtils:
+    _template_cache__private = {}
+    
     @staticmethod
     def split(identifier):
         regex = '.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)'
@@ -27,6 +29,15 @@ class TemplateUtils:
     def splitFull(value):
         l = TemplateUtils.split(value)
         return string.join([f.upper() for f in l], "_")
+    
+    @staticmethod
+    def get(filename):
+        if TemplateUtils._template_cache__private.has_key(filename):
+            return TemplateUtils._template_cache__private.get(filename)
+        else:
+            text = open("./static/tpfile/%s.tp" % filename, "r").read()
+            TemplateUtils._template_cache__private[filename] = text
+            return text
             
 class Template(object):
     def __init__(self, datas):

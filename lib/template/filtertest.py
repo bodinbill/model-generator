@@ -1,5 +1,4 @@
 from template import Template, TemplateUtils
-from tptype import TemplateType
 
 REQUIRE_TEMPLATE = """
 		underTest.set{0}(null);
@@ -32,13 +31,13 @@ class FilterTestTemplate(Template):
             properties += "filter.set%s(TestCase.ANY_%s);\n" % (upper, data[1].upper())
             
             methods += prefix
-            methods += TemplateType.FILTER_METHOD_TEST.format(upper=upper, uppertype=data[1].upper())
+            methods += TemplateUtils.get("filter-method-test").format(upper=upper, uppertype=data[1].upper())
             prefix = "\n\n"
             
             requires += REQUIRE_TEMPLATE.format(upper, str(not last).lower())
 
         upper = TemplateUtils.splitUpper(name, "")
         
-        return TemplateType.FILTER_TEST_TEMPLATE.format(packet=datas["package"], interface=upper, \
+        return TemplateUtils.get("filter-test").format(packet=datas["package"], interface=upper, \
                                            testunit=methods, properties=properties, requires=requires)
 

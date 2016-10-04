@@ -1,5 +1,4 @@
 from template import Template, TemplateUtils
-from tptype import TemplateType
 
 class InterfaceTemplate(Template):
     def __init__(self, datas):
@@ -26,24 +25,24 @@ class InterfaceTemplate(Template):
         upperName = TemplateUtils.splitUpper(name)
         upper = TemplateUtils.splitUpper(name, "")
         
-        return TemplateType.INTERFACE_TEMPLATE % \
+        return TemplateUtils.get("interface") % \
               (datas["package"], upperName, datas["author"], upper, datas["super"], datas["key"], methods)
 
     def _generateGetMethod(self, name, data_type):
         lower = TemplateUtils.splitLower(name)
         upper = TemplateUtils.splitUpper(name, "")
         
-        return TemplateType.GET_METHOD_TEMPLATE % (lower, lower, data_type, upper)
+        return TemplateUtils.get("get-method") % (lower, lower, data_type, upper)
 
     def _generateIsMethod(self, name, data_type):
         lower = TemplateUtils.splitLower(name)
         upper = TemplateUtils.splitUpper(name, "")
         
-        return TemplateType.IS_METHOD_TEMPLATE % (lower, lower, data_type, upper)
+        return TemplateUtils.get("is-method") % (lower, lower, data_type, upper)
 
     def _generateSetMethod(self, name, data_type):
         lower = TemplateUtils.splitLower(name)
         upper = TemplateUtils.splitUpper(name, "")
         
-        return TemplateType.SET_METHOD_TEMPLATE % (lower, name, lower, upper, data_type, name)
+        return TemplateUtils.get("set-method") % (lower, name, lower, upper, data_type, name)
 

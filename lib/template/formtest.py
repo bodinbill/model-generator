@@ -1,8 +1,6 @@
 from template import Template 
 from template import TemplateUtils
-from tptype import TemplateType
-from lib.template.utils import Utils
-
+from utils import Utils
 
 class FormTestTemplate(Template):
     def __init__(self, datas):
@@ -31,7 +29,7 @@ class FormTestTemplate(Template):
         upper = TemplateUtils.splitUpper(name, "")
         camel = TemplateUtils.splitCamel(name)
         
-        return TemplateType.FORM_TEMPLATE_TEST.format(packet=datas["package"], entitykey=datas["key"], interface=upper, labelAmount=len(properties), \
+        return TemplateUtils.get("form-test").format(packet=datas["package"], entitykey=datas["key"], interface=upper, labelAmount=len(properties), \
                                                       camel=camel, labels=labels, fill=fill, fillForm=fillForm, assertForm=assertForm, \
                                                       create=create, assertNotForm=assertNotForm)
 

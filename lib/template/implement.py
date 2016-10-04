@@ -1,5 +1,4 @@
 from template import Template, TemplateUtils
-from tptype import TemplateType
 
 class ImplementTemplate(Template):
     def __init__(self, datas):
@@ -29,21 +28,21 @@ class ImplementTemplate(Template):
 
         upper = TemplateUtils.splitUpper(name, "")
         
-        return TemplateType.IMPLEMENT_TEMPLATE % \
-              (datas["package"], upper, datas["author"], upper, datas["abstract"], datas["key"], upper, privates, methods)
+        return TemplateUtils.get("implement") % (datas["package"], upper, datas["author"], upper, \
+                                                 datas["abstract"], datas["key"], upper, privates, methods)
 
     def _generateGetMethod(self, name, data_type):
         upper = TemplateUtils.splitUpper(name, "")
         
-        return TemplateType.GET_METHOD_IMPL_TEMPLATE % (data_type, upper, name)
+        return TemplateUtils.get("get-method-impl") % (data_type, upper, name)
 
     def _generateIsMethod(self, name, data_type):
         upper = TemplateUtils.splitUpper(name, "")
         
-        return TemplateType.IS_METHOD_IMPL_TEMPLATE % (data_type, upper, name)
+        return TemplateUtils.get("is-method-impl") % (data_type, upper, name)
 
     def _generateSetMethod(self, name, data_type):
         upper = TemplateUtils.splitUpper(name, "")
         
-        return TemplateType.SET_METHOD_IMPL_TEMPLATE % (upper, data_type, name, name, name)
+        return TemplateUtils.get("set-method-impl") % (upper, data_type, name, name, name)
 
