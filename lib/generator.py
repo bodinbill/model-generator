@@ -1,13 +1,16 @@
-from template.interface import InterfaceTemplate
-from template.implement import ImplementTemplate
-from template.repositoryhibernatetest import RepositoryHibernateTestTemplate
-from template.test import TestTemplate
-from template.form import FormTemplate
-from template.filter import FilterTemplate
-from template.filtertest import FilterTestTemplate
-from template.tptype import TemplateType
+import os
+import re
 
 from reader import Reader
+from template.filter import FilterTemplate
+from template.filtertest import FilterTestTemplate
+from template.form import FormTemplate
+from template.implement import ImplementTemplate
+from template.interface import InterfaceTemplate
+from template.repositoryhibernatetest import RepositoryHibernateTestTemplate
+from template.test import TestTemplate
+from template.tptype import TemplateType
+
 
 class Generator:
     def __init__(self, filename):
@@ -38,6 +41,20 @@ class Generator:
         
     def _collect(self, filename):
         return open("./static/tpfile/%s.tp" % filename, "r").read()
+    
+    def _write(self, files):
+        path = "dist"
+         
+        if not os.path.exists(path):
+            os.makedirs(path)
+            
+            
+        for name, body in files.iteritems():
+            f = open("%s/%s.java" % (path, name), "w")
+            f.write(body)
+            f.close()
+
+        print "Generated file to %s" % os.path.abspath(path)
 
     def execute(self):
         self.reader.execute()
@@ -46,6 +63,20 @@ class Generator:
         tps = [InterfaceTemplate(datas), ImplementTemplate(datas), \
              TestTemplate(datas), RepositoryHibernateTestTemplate(datas), \
              FormTemplate(datas), FilterTemplate(datas), FilterTestTemplate(datas)]
+        
+        files = {}
 
         for tp in tps:
-            print tp.execute()
+            body = tp.execute()
+            
+            m = re.search("public (class|interface) (\S+)", body)
+            name = m.group(2)
+            
+            files[name] = body
+            
+        self._write(files)
+        
+            
+            
+            
+            
