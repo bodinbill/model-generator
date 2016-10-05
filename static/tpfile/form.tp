@@ -5,6 +5,7 @@
 	 * @author {auther}
 	 */
 	public class CreateOrUpdate{interface}Form extends AbstractCreateOrUpdateForm<{interface}, {entitykey}> {{
+		private {interface}Repository {camel}Repository;
 {variable}
 	
 		/**
@@ -36,5 +37,16 @@
 			
 {labels}	
 			return labels;
+		}}
+		
+		@Override
+		public Repository<{interface}, {entitykey}> getRepository() {{
+			return {camel}Repository;
+		}}
+		
+		@Override
+		protected void initializeIntl() {{
+			ServiceLocator serviceLocator = ServiceLocator.getInstance();
+			{camel}Repository = serviceLocator.getService({interface}Repository.class);
 		}}
 	}}

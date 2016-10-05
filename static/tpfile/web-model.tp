@@ -1,0 +1,55 @@
+package com.wongnai.web.common.model;
+
+import java.util.Map;
+
+import com.wongnai.domain.model.{packet}.{interface};
+import com.wongnai.framework.common.processor.Processor;
+import com.wongnai.framework.web.model.AbstractConverter;
+import com.wongnai.framework.web.model.AbstractWebModel;
+import com.wongnai.framework.web.model.WebUrl;
+import com.wongnai.framework.web.model.WebUrlFactory;
+
+public class Web{interface} extends AbstractWebModel<{interface}> {{
+	public static final Processor<{interface}, Web{interface}> CONVERTER = new Converter();
+	private WebUrl adminUrl;
+
+	/**
+	 * Constructs an instance.
+	 *
+	 * @param entity
+	 *            entity
+	 */
+	protected Web{interface}({interface} entity) {{
+		super(entity);
+	}}
+
+	@Override
+	public WebUrl getUrl() {{
+		return null;
+	}}
+
+	/**
+	 * Gets admin url.
+	 *
+	 * @return admin url
+	 */
+	public WebUrl getAdminUrl() {{
+		if(adminUrl == null) {{
+			adminUrl = WebUrlFactory.create(new String[] {{"admin", "{entityName}s", getEntity().getId().toString() }});
+		}}
+		return adminUrl;
+	}}
+
+	@Override
+	protected Map<String, String> createLabels() {{
+		return null;
+	}}
+
+	private static class Converter extends AbstractConverter<{interface}, Web{interface}>
+			implements Processor<{interface}, Web{interface}> {{
+		@Override
+		protected Web{interface} convert({interface} input) {{
+			return new Web{interface}(input);
+		}}
+	}}
+}}

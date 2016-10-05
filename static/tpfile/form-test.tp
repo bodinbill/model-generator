@@ -92,3 +92,4 @@
 		private void assertNotEqualForm({interface} {camel}) {{
 {assertNotForm}		}}
 	}}
+	

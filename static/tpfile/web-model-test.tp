@@ -1,0 +1,40 @@
+package com.wongnai.web.common.model;
+
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.wongnai.domain.model.{packet}.{interface};
+import com.wongnai.domain.model.{packet}.internal.{interface}Impl;
+import com.wongnai.framework.domain.AbstractEntity;
+
+public class Web{interface}Test {{
+	private static final long ENTITY_KEY = 165L;
+	private {interface} entity;
+	private Web{interface} underTest;
+
+	@Before
+	public void setUp() {{
+		entity = new {interface}Impl();
+		AbstractEntity.setId(({interface}Impl) entity, ENTITY_KEY);
+		underTest = Web{interface}.CONVERTER.process(entity);
+	}}
+
+	@Test
+	public void testUrl() {{
+		Assert.assertThat(underTest.getUrl(), CoreMatchers.nullValue());
+	}}
+
+	@Test
+	public void testAdminUrl() {{
+		Assert.assertThat(underTest.getAdminUrl().getEncodedPath(),
+				CoreMatchers.equalTo("admin/{entityName}s/" + ENTITY_KEY));
+
+	}}
+
+	@Test
+	public void testLabels() {{
+		Assert.assertThat(underTest.createLabels(), CoreMatchers.nullValue());
+	}}
+}}

@@ -2,7 +2,7 @@ from lib.template.template import TemplateUtils, Template
 from lib.template.utils import Utils
 
 TEMPLATE_PARAMETER_SET = """            if (isParameterSet("{param}", {param})) {{
-                {name}.setCode({param});
+                {name}.set{upperParam}({param});
             }}
 """
         
@@ -52,12 +52,12 @@ class FormTemplate(Template):
     
     def _generateLabels(self, name, t): 
         label = TemplateUtils.splitUpper(name, " ")
-        
         return "            labels.put(\"%s\", \"%s\");\n" % (name, label)
     
     def _generateFill(self, cName, name, t):
-        lower = TemplateUtils.splitCamel(cName)
-        return TEMPLATE_PARAMETER_SET.format(param=name, name=lower)
+        lower = TemplateUtils.splitCamel(cName) 
+        upper = TemplateUtils.splitUpper(name, "")
+        return TEMPLATE_PARAMETER_SET.format(param=name, name=lower, upperParam=upper)
     
     def _generateExtract(self, cName, name, t):
         lower = TemplateUtils.splitCamel(cName)

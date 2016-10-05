@@ -1,0 +1,63 @@
+package com.wongnai.web.admin.{packet}.controller;
+
+public class Admin{interface}ControllerTest extends JMockTestCase {{
+	private Admin{interface}Controller underTest;
+	private RepositoryMockery<{interface}Repository, {interface}, Long> {camel}RepositoryMockery;
+	private {interface}Repository mock{interface}Repository;
+
+	@Before
+	public void setUp() {{
+		{camel}RepositoryMockery = new RepositoryMockery<{interface}Repository, {interface}, Long>(
+				{interface}Repository.class, getMockery());
+		mock{interface}Repository = {camel}RepositoryMockery.getMockRepository();
+
+		underTest = new Admin{interface}Controller();
+		underTest.set{interface}Repository(mock{interface}Repository);
+	}}
+
+	@Test
+	public void testConverter() {{
+		Assert.assertThat(underTest.getConverter(), CoreMatchers.sameInstance(Web{interface}.CONVERTER));
+	}}
+
+	@Test
+	public void testEntityName() {{
+		Assert.assertThat(underTest.getEntityName(), CoreMatchers.equalTo("{entityName}"));
+	}}
+
+	@Test
+	public void testRepository() {{
+		Assert.assertThat(underTest.getRepository(), CoreMatchers.sameInstance(mock{interface}Repository));
+	}}
+
+	@Test
+	public void testRequestPaths() {{
+		Assert.assertArrayEquals(new String[] {{"admin", "{entityName}s" }}, underTest.getRequestPaths());
+	}}
+
+	@Test
+	public void testColumnNames() {{
+		Assert.assertArrayEquals(new String[] {{{columns}}},
+				underTest.getColumnNames());
+	}}
+
+	@Test
+	public void testExportingRole() {{
+		Assert.assertThat(underTest.getExportRoles(), CoreMatchers.equalTo(new Role[] {{Role.ADMIN, Role.OPERATOR }}));
+	}}
+
+	@Test
+	public void testCreateForm() {{
+		Assert.assertThat(underTest.createCreateForm(), CoreMatchers.instanceOf(Create{interface}Form.class));
+	}}
+
+	@Test
+	public void testUpdateForm() {{
+		Assert.assertThat(underTest.createUpdateForm(), CoreMatchers.instanceOf(Update{interface}Form.class));
+	}}
+
+	@Test
+	public void testParseParameters() {{
+		Assert.assertThat(underTest.createPredicateIntl("x", null), CoreMatchers.nullValue());
+	}}
+}}

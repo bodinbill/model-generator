@@ -1,0 +1,20 @@
+package com.wongnai.web.admin.{packet};
+
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+public class Update{interface}FormTest {{
+	private Update{interface}Form underTest;
+
+	@Before
+	public void setUp() {{
+		underTest = new Update{interface}Form();
+	}}
+
+	@Test
+	public void testMode() {{
+		Assert.assertThat(underTest.getImportMode(), CoreMatchers.equalTo(Update{interface}Form.UPDATE_ONLY));
+	}}
+}}

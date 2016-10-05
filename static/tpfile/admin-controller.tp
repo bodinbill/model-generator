@@ -1,0 +1,85 @@
+package com.wongnai.web.admin.{packet}.controller;
+
+import com.google.common.base.Predicate;
+import com.wongnai.domain.model.person.Role;
+import com.wongnai.domain.model.{packet}.{interface};
+import com.wongnai.domain.model.{packet}.{interface}Repository;
+import com.wongnai.domain.model.{packet}.internal.{interface}Impl;
+import com.wongnai.framework.common.processor.Processor;
+import com.wongnai.framework.web.jmesa.OperatorAndValue;
+import com.wongnai.framework.web.model.form.Form;
+import com.wongnai.framework.web.model.form.UpdateForm;
+import com.wongnai.web.admin.common.AbstractAdminController;
+import com.wongnai.web.admin.{packet}.Create{interface}Form;
+import com.wongnai.web.admin.{packet}.Update{interface}Form;
+import com.wongnai.web.common.model.Web{interface};
+
+@Controller
+@RequestMapping("/admin/{entityName}s") //TODO: correct this url.
+public class Admin{interface}Controller
+		extends AbstractAdminController<{interface}Repository, Web{interface}, {interface}, {key}> {{
+	private {interface}Repository {camel}Repository;
+
+	/**
+	 * Sets {name} repository.
+	 *
+	 * @param {camel}Repository
+	 *            {name} repository
+	 */
+	@Autowired
+	public void set{interface}Repository({interface}Repository {camel}Repository) {{
+		this.{camel}Repository = {camel}Repository;
+	}}
+
+	@Override
+	protected Predicate<?> createPredicateIntl(String name, OperatorAndValue ov) {{
+		return null;
+	}}
+
+	@Override
+	protected Processor<{interface}, Web{interface}> getConverter() {{
+		return Web{interface}.CONVERTER;
+	}}
+
+	@Override
+	protected {interface}Repository getRepository() {{
+		return {camel}Repository;
+	}}
+
+	@Override
+	protected Class<?> getEntityType() {{
+		return {interface}Impl.class;
+	}}
+
+	@Override
+	protected String getEntityName() {{
+		return "{entityName}";
+	}}
+
+	@Override
+	@ModelAttribute("createForm")
+	public Form<{interface}> createCreateForm() {{
+		return new Create{interface}Form();
+	}}
+
+	@Override
+	@ModelAttribute("updateForm")
+	public UpdateForm<{interface}, {key}> createUpdateForm() {{
+		return new Update{interface}Form();
+	}}
+
+	@Override
+	protected String[] getRequestPaths() {{
+		return new String[] {{"admin", "{entityName}s" }};
+	}}
+
+	@Override
+	protected String[] getColumnNames() {{
+		return new String[] {{{columns}}};
+	}}
+
+	@Override
+	protected Role[] getExportRoles() {{
+		return new Role[] {{Role.ADMIN, Role.OPERATOR }};
+	}}
+}}

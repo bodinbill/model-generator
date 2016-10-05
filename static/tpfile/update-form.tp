@@ -1,0 +1,10 @@
+package com.wongnai.web.admin.{packet};
+
+public class Update{interface}Form extends CreateOrUpdate{interface}Form {{
+	/**
+	 * Constructs an instance.
+	 */
+	public Update{interface}Form() {{
+		setImportMode(UPDATE_ONLY);
+	}}
+}}
